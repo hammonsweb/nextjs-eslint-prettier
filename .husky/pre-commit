@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+npx lint-staged ||
+(
+    echo '❌ lint-staged failed. Check out Pre-commit hooks in the README.md for options to fix.'
+    false;
+)
+
+echo '✅ 🚀 Commit accepted!'
