@@ -1,8 +1,9 @@
 import micromatch from 'micromatch'
 
 const config = {
-    '*.{js,jsx,ts,tsx}': (files) => {
-        return [`eslint --max-warnings=0 ${files.join(' ')}`, `prettier --check ${files.join(' ')}`]
+    'src/**/*.{js,jsx,ts,tsx,css,scss}': (allFiles) => {
+        const eslintFiles = micromatch(allFiles, ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'])
+        return [`eslint --max-warnings=0 ${eslintFiles.join(' ')}`, `prettier --check ${allFiles.join(' ')}`]
     },
 }
 
